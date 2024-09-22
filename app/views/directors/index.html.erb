@@ -1,0 +1,10 @@
+<div class="d-flex align-items-center bg-white full-height">
+  <div class="container"> 
+    <h2 class="display-2 text-center">Listagem</h2>
+    <% @directors.each do |director| %>
+      <div class="row justify-content-center mt-2">
+        <p class="text-center"><%= link_to "#{director.name.capitalize}", director %></p>
+      </div>
+    <% end %>
+  </div>
+</div>

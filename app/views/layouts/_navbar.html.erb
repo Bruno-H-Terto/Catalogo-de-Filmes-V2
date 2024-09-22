@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark nav-border">
+  <div class="container-fluid">
+    <%= link_to 'Catalogo de Filmes', root_path, class: 'navbar-brand' %>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <% if current_page? root_path %>
+          <li class="nav-item">
+            <a href="#gender" class="nav-link">Gêneros</a>
+          </li>
+          <li class="nav-item">
+            <a href="#director" class="nav-link">Diretores</a>
+          </li>
+        <% end %>
+
+      </ul>
+      <form class="d-flex" role="search">
+        <input
+          class="form-control me-2"
+          type="search"
+          placeholder="Buscar"
+          aria-label="Buscar"
+        />
+        <button class="btn btn-outline-success" type="submit">Buscar</button>
+      </form>
+    </div>
+  </div>
+</nav>

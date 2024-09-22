@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Poly:ital@0;1&display=swap');
+
+:root {
+  --primary-color: rgb(75, 114, 199); 
+  --secondary-color: rgb(236, 234, 234); /* Correção de 'secundary' para 'secondary' */
+}
+
+.full-height {
+  height: 100vh;
+}
+
+a {
+  text-decoration: none;
+}
+
+.heading-form {
+  color: rgb(157, 188, 214);
+}
+
+.title-section {
+  font-size: 6rem;
+  font-family: "Poly", serif;
+}
+
+.bg-secondary-per { /* Correção de 'secundary' para 'secondary' */
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+.bg-secondary-per a { /* Correção de 'secundary' para 'secondary' */
+  color: var(--primary-color);
+  transition: color 0.3s ease;
+}
+
+.bg-secondary-per a:hover { /* Correção de ':houver' para ':hover' */
+  color: rgb(7, 16, 151);
+  cursor: pointer;
+}
+
+.bg-primary-per {
+  background-color: var(--primary-color);
+  color: rgb(19, 19, 19); /* Correção de 'secundary' para 'secondary' */
+}
+
+.bg-primary-per a {
+  color: var(--primary-color); /* Correção de 'secundary' para 'secondary' */
+}
+
+.nav-border {
+  border-bottom: 1px solid rgb(92, 92, 92);
+}
