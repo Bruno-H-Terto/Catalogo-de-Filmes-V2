@@ -3,8 +3,12 @@
     <h2 class="display-2 text-center">Listagem</h2>
     <% @genders.each do |gender| %>
       <div class="row justify-content-center mt-2">
-        <p class="text-center"><%= link_to "#{gender.name.capitalize}", gender %></p>
+        <p class="text-center"><%= link_to "#{gender.name}", gender %></p>
       </div>
     <% end %>
   </div>
+</div>
+
+<div class="pagination">
+  <%= paginate @genders %>
 </div>

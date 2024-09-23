@@ -1,11 +1,14 @@
 class GendersController < ApplicationController
   def index
-    @genders = Gender.all.order(name: :asc)
+    @genders = Gender.all.order(name: :asc).page(params[:page]).per(5)
+
   end  
 
   def show
     begin
       @gender = Gender.find(params[:id])
+      @movies = Movie.where("gender_id = ?", @gender.id).first(5)
+      @directors = Director.where("gender_id = ?", @gender.id).first(5)
     rescue
       redirect_to root_path, alert: 'Gênero não localizado'
     end
@@ -17,7 +20,7 @@ class GendersController < ApplicationController
 
   def create
     @gender = Gender.new(gender_params)
-    @gender.name = gender_params[:name].split(' ').map{ |p| p.capitalize}.join(' ')
+    @gender.name = format_name(@gender.name)
   
     if @gender.save
       redirect_to genders_path, notice: 'Gênero salvo com sucesso'
@@ -38,8 +41,10 @@ class GendersController < ApplicationController
   def update
     begin
       @gender = Gender.find(params[:id])
+      params = gender_params
+      params[:name] = format_name(params[:name])
 
-      if @gender.update(gender_params)
+      if @gender.update(params)
         redirect_to genders_path, notice: 'Gênero atualizado com sucesso'
       else
         flash.now[:alert] = 'Não foi possível concluir esta operação.'

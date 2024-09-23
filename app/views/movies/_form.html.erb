@@ -1,0 +1,39 @@
+<div class="row justify-content-center mt-5"> 
+  <div class="col-4">
+    <%= form_with(model: @movie, data: {turbo: false}, class: 'p-3') do |form| %> 
+      <div>
+        <%= form.label :name, class: "form-label" %>
+        <%= form.text_field :name, class: "form-control", placeholder: 'Nome' %>
+      </div>
+
+      <div>
+        <%= form.label :year, class: "form-label" %>
+        <%= form.number_field :year, class: "form-control", min: 1900, max: Date.today + 100.years, placeholder: 'Ano de lançamento' %>
+      </div>
+
+      <div>
+        <%= form.label :synopsis, class: "form-label" %>
+        <%= form.text_area :synopsis, class: "form-control", placeholder: 'Sinopse' %>
+      </div>
+
+      <div>
+        <%= form.label :length, class: "form-label" %>
+        <%= form.number_field :length, min: 0, class: "form-control", placeholder: 'Duração em minutos' %>
+      </div>
+
+      <div>
+        <%= form.label :director_id, class: "form-label" %>
+        <%= form.select :director_id, Director.pluck(:name, :id), {prompt: 'Selecione o Diretor'}, class: "form-control", placeholder: 'Diretor' %>
+      </div>
+
+      <div>
+        <%= form.label :gender_id, class: "form-label" %>
+        <%= form.select :gender_id, Gender.pluck(:name, :id), {prompt: 'Selecione o Gênero'}, class: "form-control", placeholder: 'Gênero' %>
+      </div>
+
+      <div class="d-grid mt-3">
+        <%= form.submit 'Enviar', class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+  </div>
+</div>

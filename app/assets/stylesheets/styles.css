@@ -2,8 +2,13 @@
 
 :root {
   --primary-color: rgb(75, 114, 199); 
-  --secondary-color: rgb(236, 234, 234); /* Correção de 'secundary' para 'secondary' */
+  --secondary-color: rgb(236, 234, 234);
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
 
 .full-height {
   height: 100vh;
@@ -22,30 +27,47 @@ a {
   font-family: "Poly", serif;
 }
 
-.bg-secondary-per { /* Correção de 'secundary' para 'secondary' */
+
+.bg-primary-per {
+  background-color: var(--primary-color);
+  color: rgb(19, 19, 19);
+}
+
+.bg-primary-per a {
+  color: var(--primary-color);
+}
+
+.bg-dark h3 a{
+  color: var(--secondary-color);
+  transition: color 0.3s ease;
+}
+
+.bg-dark h3 a:hover{
+  color: var(--primary-color);
+}
+
+
+.bg-secondary-per { 
   background-color: var(--secondary-color);
   color: var(--primary-color);
 }
 
-.bg-secondary-per a { /* Correção de 'secundary' para 'secondary' */
+.bg-secondary-per h3 a { 
   color: var(--primary-color);
   transition: color 0.3s ease;
 }
 
-.bg-secondary-per a:hover { /* Correção de ':houver' para ':hover' */
+.bg-secondary-per h3 a:hover { 
   color: rgb(7, 16, 151);
   cursor: pointer;
 }
-
-.bg-primary-per {
-  background-color: var(--primary-color);
-  color: rgb(19, 19, 19); /* Correção de 'secundary' para 'secondary' */
-}
-
-.bg-primary-per a {
-  color: var(--primary-color); /* Correção de 'secundary' para 'secondary' */
-}
-
-.nav-border {
+/* .nav-border {
   border-bottom: 1px solid rgb(92, 92, 92);
+} */
+
+
+@media (max-width: 767px) {
+  .img-box {
+    display: none;
+  }
 }

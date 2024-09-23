@@ -6,6 +6,7 @@
     </div>
   </section>
 
+
   <section id="gender" class="full-height d-flex align-items-center justify-content-center bg-secondary-per">
 
     <div class="container text-center">
@@ -14,7 +15,7 @@
       <div class="row align-items-center">
         <div class="col-md-4">
           <div class="service-box">
-            <%= image_tag 'gender.svg', alt: 'Descrição da imagem', class: 'img-fluid' %>
+            <%= image_tag 'gender.svg', alt: '', class: 'img-fluid img-box' %>
           </div>
         </div>
 
@@ -43,16 +44,54 @@
       <div class="row">
         <div class="col-md-4">
           <div class="service-box">
-            <h3><%= link_to 'Novo', new_director_path %></h3>
+            <h3><%= link_to 'Novo', new_director_path, class: 'link' %></h3>
             <p>Cadastre um novo diretor.</p>
           </div>
         </div>
+
+        <div class="col-md-4">
+          <div class="service-box">
+            <%= image_tag 'director.svg', alt: 'Imagem multicolorida de uma câmera', class: 'img-fluid img-box' %>
+          </div>
+        </div>
+
         <div class="col-md-4">
           <div class="service-box">
             <h3><%= link_to 'Listar todos', directors_path, class: 'link' %></h3>
             <p>Veja nossa listagem de diretores cadastrados.</p>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="movies" class="full-height d-flex align-items-center justify-content-center bg-secondary-per">
+
+    <div class="container text-center">
+
+      <h2>Filmes</h2>
+      <div class="row align-items-center">
+
+        <div class="col-md-4">
+          <div class="service-box">
+            <h3><%= link_to 'Novo', new_movie_path, class: 'link' %></h3>
+            <p>Cadastre um novo filme.</p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="service-box">
+            <h3><%= link_to 'Listar todos', movies_path, class: 'link' %></h3>
+            <p>Veja nossa listagem de filmes cadastrados.</p>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="service-box">
+            <%= image_tag 'movie.svg', alt: 'Imagem multicolorida de uma câmera', class: 'img-fluid img-box' %>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>

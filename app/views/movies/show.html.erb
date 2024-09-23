@@ -1,0 +1,34 @@
+<div class="d-flex align-items-center bg-white full-height">
+  <div class="container"> 
+    <div class="row">
+      <div class="col-4">
+        <div class="container-fluid">
+          <h2 class="display-2 text-center"><%= @movie.name.upcase %></h2>
+          <small><%= link_to 'Editar', edit_movie_path %></small>
+        </div>
+        <div class="row justify-content-center mt-2">
+          <p class="text-center">Conheça as obras e Diretores aclamados do gênero <%= @movie.name %></p>
+        </div>
+      </div>
+
+      <div class="col-4">
+        <div class="container-fluid">
+          <h2 class="display-2 text-center">Obras</h2>
+        </div>
+        <div class="row justify-content-center mt-2">
+          <p class="text-center">Conheça as obras e Diretores aclamados do gênero <%= @movie.name %></p>
+        </div>
+      </div>
+
+      <div class="col-4">
+        <div class="container-fluid">
+          <h2 class="display-2 text-center">Diretores</h2>
+        </div>
+        <div class="row justify-content-center mt-2">
+          <p class="text-center">Conheça as obras e Diretores aclamados do gênero <%= @movie.name %></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

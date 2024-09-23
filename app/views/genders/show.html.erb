@@ -7,7 +7,7 @@
           <small><%= link_to 'Editar', edit_gender_path %></small>
         </div>
         <div class="row justify-content-center mt-2">
-          <p class="text-center">Conheça as obras e Diretores aclamados do gênero <%= @gender.name.capitalize %></p>
+          <p>Conheça as obras e Diretores aclamados do gênero <%= @gender.name.capitalize %></p>
         </div>
       </div>
 
@@ -16,7 +16,24 @@
           <h2 class="display-2 text-center">Obras</h2>
         </div>
         <div class="row justify-content-center mt-2">
-          <p class="text-center">Conheça as obras e Diretores aclamados do gênero <%= @gender.name.capitalize %></p>
+          <p>Conheça as obras aclamadas do gênero <%= @gender.name.capitalize %></p>
+          <% if @movies %>
+          <% @movies.each_with_index do |movie, index| %>
+              <div class="row justify-content-center mt-2">
+                <div class="col-4">
+                  <p class="text-center"><%= index + 1 %>:</p>
+                </div>
+
+                <div class="col-8">
+                  <p class="text-center"><%= link_to "#{movie.name}", movie %></p>
+                </div>
+              </div>
+            <% end %>
+          <% else %>
+            <div class="row justify-content-center mt-2">
+                <p class="text-center">Não existem filmes registrados</p>
+              </div>
+          <% end %>
         </div>
       </div>
 
@@ -25,7 +42,24 @@
           <h2 class="display-2 text-center">Diretores</h2>
         </div>
         <div class="row justify-content-center mt-2">
-          <p class="text-center">Conheça as obras e Diretores aclamados do gênero <%= @gender.name.capitalize %></p>
+          <p>Conheça Diretores aclamados do gênero <%= @gender.name %></p>
+          <% if @directors %>
+            <% @directors.each_with_index do |director, index| %>
+                <div class="row justify-content-center mt-2">
+                  <div class="col-4">
+                    <p class="text-center"><%= index + 1 %>:</p>
+                  </div>
+
+                  <div class="col-8">
+                    <p class="text-center"><%= link_to "#{director.name}", director %></p>
+                  </div>
+                </div>
+              <% end %>
+            <% else %>
+              <div class="row justify-content-center mt-2">
+                  <p class="text-center">Não existem diretores registrados</p>
+                </div>
+          <% end %>
         </div>
       </div>
 

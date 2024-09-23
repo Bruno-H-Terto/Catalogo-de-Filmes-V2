@@ -1,7 +1,7 @@
 class DirectorsController < ApplicationController
   
   def index
-    @directors = Director.all.order(name: :asc)
+    @directors = Director.all.order(name: :asc).page(params[:page]).per(5)
   end
 
   def show
@@ -17,6 +17,7 @@ class DirectorsController < ApplicationController
 
   def create
     @director = Director.new(director_params)
+    @diretor.name = format_name(@director.name)
 
     if @director.save
       redirect_to @director, notice: "Diretor incluido com sucesso"
@@ -37,8 +38,10 @@ class DirectorsController < ApplicationController
   def update
     begin
       @director = Director.find(params[:id])
+      params = director_params
+      params[:name] = format_name(params[:name])
 
-      if @director.update(director_params)
+      if @director.update(params)
         redirect_to @director, notice: "Diretor atualizado com sucesso"
       else
         flash.now[:alert] = 'Não foi possível concluir está operação'
