@@ -1,24 +1,17 @@
-# README
+# CATALOGO DE FILMES
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Dependências
 
-Things you may want to cover:
+- Ruby 3.2.1
+- Rails 7.2.1
+- Node v20.12.2
+- Yarn 1.22.22
 
-* Ruby version
 
-* System dependencies
 
-* Configuration
+Rode o comando `bundle install`.
 
-* Database creation
+Inicie o projeto com `bin/dev`.
 
-* Database initialization
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
