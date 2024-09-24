@@ -22,7 +22,7 @@
         <%= form.select :gender_id, Gender.pluck(:name, :id), { prompt: 'Selecione um gênero' }, class: 'form-control' %>
       </div>
 
-      <div class="d-grid mt-2">
+      <div class="d-grid mt-3">
         <%= form.submit 'Enviar', class: 'btn btn-primary' %>
       </div>
     <% end %>
