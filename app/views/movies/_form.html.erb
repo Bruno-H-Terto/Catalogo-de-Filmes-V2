@@ -7,6 +7,11 @@
       </div>
 
       <div>
+        <%= form.label :photo, class: "form-label" %>
+        <%= form.file_field :photo, class: "form-control" %>
+      </div>
+
+      <div>
         <%= form.label :year, class: "form-label" %>
         <%= form.number_field :year, class: "form-control", min: 1900, max: Date.today + 100.years, placeholder: 'Ano de lançamento' %>
       </div>

@@ -3,29 +3,51 @@
     <div class="row">
       <div class="col-4">
         <div class="container-fluid">
-          <h2 class="display-2 text-center"><%= @movie.name.upcase %></h2>
+          <h2 class="display-2 text-center">Info</h2>
+          <small class="me-3">
+            <% if @movie.draft? %>
+              <%= link_to 'Publicar', publish_movie_path(@movie, status: 'publish'), data: { turbo: true, method: :patch } %>
+            <% else %>
+              <%= link_to 'Ocultar', publish_movie_path(@movie, status: 'draft'), data: { turbo: true, method: :patch } %>
+            <% end %>
+
+          </small>
           <small><%= link_to 'Editar', edit_movie_path %></small>
         </div>
         <div class="row justify-content-center mt-2">
-          <p class="text-center">Conheça as obras e Diretores aclamados do gênero <%= @movie.name %></p>
+          <p class="text-center">Descubra mais detalhes sobre a obra: <%= @movie.name %></p>
+          <p class="text-start">Sinopse: <%= @movie.synopsis %></p>
         </div>
       </div>
 
       <div class="col-4">
         <div class="container-fluid">
-          <h2 class="display-2 text-center">Obras</h2>
         </div>
         <div class="row justify-content-center mt-2">
-          <p class="text-center">Conheça as obras e Diretores aclamados do gênero <%= @movie.name %></p>
+          <% if @movie.photo.attached? %>
+            <%= image_tag @movie.photo, alt: 'Imagem de capa', class: 'img-fluid img-box-cover' %>
+          <% else %>
+            <%= image_tag 'default_photo.svg', alt: 'Sem capa', class: 'img-fluid img-box-cover' %>
+          <% end %>
+
         </div>
       </div>
 
       <div class="col-4">
         <div class="container-fluid">
-          <h2 class="display-2 text-center">Diretores</h2>
+          <h2 class="display-2 text-start">Detalhes</h2>
         </div>
         <div class="row justify-content-center mt-2">
-          <p class="text-center">Conheça as obras e Diretores aclamados do gênero <%= @movie.name %></p>
+          <p class="text-start"><%= @movie.name %></p>
+          <% if(@movie.year <= Date.today.year) %>
+            <p class="text-start">Lançado em <%= @movie.year %></p>
+          <% else %>
+            <p class="text-start">Data de lançamento em <%= @movie.name %></p>
+          <% end %>
+          <p class="text-start">Duração <%= @movie.length %> minutos</p>
+          <p class="text-start">Direção: <%= Director.find(@movie.director_id).name %></p>
+          <p class="text-start">Gênero: <%= Gender.find(@movie.director_id).name %></p>
+          
         </div>
       </div>
 

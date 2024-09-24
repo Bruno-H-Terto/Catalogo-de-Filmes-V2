@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
   def index
-    @movies = Movie.all.order(name: :asc).page(params[:page]).per(5)
+    @movies = Movie.published.all.order(name: :asc).page(params[:page]).per(5)
   end
   
   def show
@@ -11,6 +11,26 @@ class MoviesController < ApplicationController
     end
   end
 
+  def unpublished
+    @movies = Movie.draft.order(name: :asc).page(params[:page]).per(5)
+  end
+
+  def publish_movie
+    @movie = Movie.find(params[:id])
+  
+    if params[:status] == 'publish'
+      @movie.published!
+    elsif params[:status] == 'draft'
+      @movie.draft!
+    end
+  
+    respond_to do |format|
+      format.html { redirect_to @movie, notice: 'Status do filme atualizado com sucesso.' }
+      format.turbo_stream
+    end
+  end
+  
+
   def new
     @movie = Movie.new
   end
@@ -20,7 +40,7 @@ class MoviesController < ApplicationController
     @movie.name = format_name(@movie.name)
 
     if @movie.save
-      redirect_to movies_path, notice: 'Filme cadastrado com sucesso'
+      redirect_to unpublished_path, notice: 'Filme cadastrado com sucesso'
     else
       flash.now[:alert] = 'Não foi possível concluir esta operação'
       render :new
@@ -55,6 +75,6 @@ class MoviesController < ApplicationController
   private
 
   def movie_params
-    params.require(:movie).permit(:name, :year, :synopsis, :length, :gender_id, :director_id)
+    params.require(:movie).permit(:name, :year, :synopsis, :length, :gender_id, :director_id, :photo)
   end
 end

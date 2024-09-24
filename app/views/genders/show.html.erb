@@ -16,7 +16,7 @@
           <h2 class="display-2 text-center">Obras</h2>
         </div>
         <div class="row justify-content-center mt-2">
-          <p>Conheça as obras aclamadas do gênero <%= @gender.name.capitalize %></p>
+          <p>Conheça as obras aclamadas do gênero <%= @gender.name %></p>
           <% if @movies %>
           <% @movies.each_with_index do |movie, index| %>
               <div class="row justify-content-center mt-2">
@@ -29,6 +29,9 @@
                 </div>
               </div>
             <% end %>
+            <div class="pagination">
+              <%= paginate @movies, param_name: :movies_page %>
+            </div>
           <% else %>
             <div class="row justify-content-center mt-2">
                 <p class="text-center">Não existem filmes registrados</p>
@@ -55,6 +58,9 @@
                   </div>
                 </div>
               <% end %>
+            <div class="pagination">
+              <%= paginate @directors, param_name: :directors_page %>
+            </div>
             <% else %>
               <div class="row justify-content-center mt-2">
                   <p class="text-center">Não existem diretores registrados</p>

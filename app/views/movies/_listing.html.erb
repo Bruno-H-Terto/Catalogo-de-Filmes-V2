@@ -1,0 +1,27 @@
+<div class="container-fluid col-4"> 
+    <div class="row">
+      <% if @movies.present? %>
+        <% @movies.each do |movie| %>
+          <div class="justify-content-center mt-2 mb-2 lh-1 border-bottom">
+            <p>
+              <%= link_to movie.name, movie, class: 'link' %> 
+              - Lançamento: <%= movie.year %>
+            </p>
+            <small>
+              <% if movie.year <= Date.today.year %>
+                Já lançado
+              <% else %>
+                Aguardando lançamento
+              <% end %>
+            </small>
+          </div>
+        <% end %>
+      <% else %>
+        <p>Não existem filmes disponíveis</p>
+      <% end %>
+    </div>
+
+    <div class="pagination">
+      <%= paginate @movies %>
+    </div>
+  </div>

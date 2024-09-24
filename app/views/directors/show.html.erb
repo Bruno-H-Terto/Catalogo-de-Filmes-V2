@@ -3,7 +3,7 @@
       <div class="row">
         <div class="col-4">
           <div class="container-fluid">
-            <h2 class="display-2 text-center"><%= @director.name.upcase.split(' ')[0] %></h2>
+            <h2 class="display-2 text-center"><%= @director.name.upcase.split(' ').first %></h2>
             <small><%= link_to 'Editar', edit_director_path %></small>
           </div>
           <div class="row justify-content-center mt-2">
@@ -16,16 +16,38 @@
             <h2 class="display-2 text-center">Obras</h2>
           </div>
           <div class="row justify-content-center mt-2">
-            <p class="text-center">Conheça as obras e Diretores aclamados do gênero <%= @director.name %></p>
+            <p class="text-center">Conheça as obras dirigidas por <%= @director.name.split(' ').first %></p>
+            <% if @movies %>
+            <% @movies.each_with_index do |movie, index| %>
+                <div class="row justify-content-center mt-2">
+                  <div class="col-4">
+                    <p class="text-center"><%= index + 1 %>:</p>
+                  </div>
+
+                  <div class="col-8">
+                    <p class="text-center"><%= link_to "#{movie.name}", movie %></p>
+                  </div>
+                </div>
+              <% end %>
+              <div class="pagination">
+                <%= paginate @movies, param_name: :movies_page %>
+              </div>
+            <% else %>
+              <div class="row justify-content-center mt-2">
+                  <p class="text-center">Não existem filmes registrados</p>
+                </div>
+            <% end %>
           </div>
         </div>
 
         <div class="col-4">
           <div class="container-fluid">
-            <h2 class="display-2 text-center">Diretores</h2>
+            <h2 class="display-2 text-center">Informações</h2>
           </div>
           <div class="row justify-content-center mt-2">
-            <p class="text-center">Conheça as obras e Diretores aclamados do gênero <%= @director.name %></p>
+            <p class="text-start"><%= @director.name %>, <%= @director.nationality %></p>
+            <p class="text-start">Nascido em <%= l @director.birthday, format: :long %></p>
+            <p class="text-start">Tem gênero favorito <%= Gender.find(@director.gender_id).name %></p>
           </div>
         </div>
 

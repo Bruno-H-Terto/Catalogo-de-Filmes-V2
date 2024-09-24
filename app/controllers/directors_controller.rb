@@ -2,11 +2,14 @@ class DirectorsController < ApplicationController
   
   def index
     @directors = Director.all.order(name: :asc).page(params[:page]).per(5)
+
+    
   end
 
   def show
     begin
       @director = Director.find(params[:id])
+      @movies = Movie.where("director_id = ?", @director.id).order(name: :asc).page(params[:movies_page]).per(5)
     rescue
       redirect_to root_path, alert: 'Não foi possível localizar o diretor procurado'
     end
@@ -17,7 +20,7 @@ class DirectorsController < ApplicationController
 
   def create
     @director = Director.new(director_params)
-    @diretor.name = format_name(@director.name)
+    @director.name = format_name(@director.name)
 
     if @director.save
       redirect_to @director, notice: "Diretor incluido com sucesso"

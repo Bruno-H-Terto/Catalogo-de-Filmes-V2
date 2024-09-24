@@ -7,8 +7,8 @@ class GendersController < ApplicationController
   def show
     begin
       @gender = Gender.find(params[:id])
-      @movies = Movie.where("gender_id = ?", @gender.id).first(5)
-      @directors = Director.where("gender_id = ?", @gender.id).first(5)
+      @movies = Movie.where("gender_id = ?", @gender.id).order(name: :asc).page(params[:movies_page]).per(5)
+      @directors = Director.where("gender_id = ?", @gender.id).order(name: :asc).page(params[:directors_page]).per(5)
     rescue
       redirect_to root_path, alert: 'Gênero não localizado'
     end
@@ -54,6 +54,7 @@ class GendersController < ApplicationController
       redirect_to root_path, alert: 'Gênero não localizado'
     end
   end
+  
 
   private
 

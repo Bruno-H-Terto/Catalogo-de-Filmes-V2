@@ -1,14 +1,18 @@
-<div class="d-flex align-items-center bg-white full-height">
-  <div class="container"> 
-    <h2 class="display-2 text-center">Listagem</h2>
-    <% @directors.each do |director| %>
-      <div class="row justify-content-center mt-2">
-        <p class="text-center"><%= link_to "#{director.name.capitalize}", director %></p>
+<div class="row d-flex align-items-center bg-white full-height">
+  <div class="col-6">
+    <h2 class="display-2 ms-5">Listagem de diretores</h2>
+  </div>
+  <div class="container-fluid col-4"> 
+    <div class="row">
+      <% @directors.each do |director| %>
+        <div class="justify-content-center mt-2">
+          <p><%= link_to "#{director.name}", director %></p>
+        </div>
+      <% end %>
+      <div class="pagination">
+        <%= paginate @directors %>
       </div>
-    <% end %>
+    </div>
   </div>
 </div>
 
-<div class="pagination">
-  <%= paginate @directors %>
-</div>

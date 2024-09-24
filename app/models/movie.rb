@@ -1,11 +1,15 @@
 class Movie < ApplicationRecord
   belongs_to :director
   belongs_to :gender
+  has_one_attached :photo
 
   validates :name, :length, :synopsis, :year, presence: true
 
   validate :must_lenght
   validate :must_year
+
+
+  enum status: { draft: 0, published: 5}
 
   def must_lenght
     if self.length.nil? || self.length < 0

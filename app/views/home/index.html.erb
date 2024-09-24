@@ -1,10 +1,28 @@
-  <section id="catlog" class="full-height d-flex align-items-center justify-content-center bg-dark text-white">
-    <div class="text-center">
-      <h1>Bem-vindo a plataforma</h1>
-      <p>Oferecemos o melhor acervo de filmes.</p>
-      <a href="#" class="btn btn-light mt-3">Saiba Mais</a>
+<section id="catalog" class="full-height d-flex align-items-center justify-content-center bg-dark text-white">
+  <div class="text-center">
+    <h1>Bem-vindo à plataforma Catalogo de Filmes</h1>
+    <p>Oferecemos o melhor acervo de filmes.</p>
+    <div class="container row d-flex align-items-center justify-content-center ">
+      <% if @films_on_display %>
+        <p>Destaques</p>
+      <% end %>
+      <% @films_on_display.each do |movie| %>
+        <div class="card ms-1 me-1 img-box-index" style="width: 10rem;">
+          <%= image_tag movie.photo, alt: "Capa do filme: #{movie.name}", class: 'card-img-top img-fluid mt-2' %>
+          <div class="card-body d-flex flex-column ">
+            <h5 class="card-title mt-auto"><small class="text-center d-block"><%= link_to movie.name, movie, class: 'link' %></small></h5>
+            <p class="card-text">(<%= movie.year%>)</p>
+          </div>
+        </div>
+      <% end %>
     </div>
-  </section>
+    </div>
+    <div class="pagination">
+      <%= paginate @films_on_display, param_name: :movies_page %>
+    </div>
+  </div>
+</section>
+
 
 
   <section id="gender" class="full-height d-flex align-items-center justify-content-center bg-secondary-per">

@@ -14,6 +14,8 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+
         <% if current_page? root_path %>
           <li class="nav-item">
             <%= link_to 'Gêneros', '#gender', class: 'nav-link', data: { turbo: false } %>
@@ -27,7 +29,7 @@
         <% else %>
 
           <li>
-            <div class="dropdown">
+            <div class="dropdown me-1">
               <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Diretores
               </button>
@@ -43,7 +45,7 @@
           </li>
 
           <li>
-            <div class="dropdown">
+            <div class="dropdown me-1">
               <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Gêneros
               </button>
@@ -59,7 +61,7 @@
           </li>
         
           <li>
-            <div class="dropdown">
+            <div class="dropdown me-1">
               <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Filmes
               </button>
@@ -70,21 +72,16 @@
                 <li class="nav-item">
                   <%= link_to 'Listar Filmes', movies_path, class: 'dropdown-item'%>
                 </li>
+                <li class="nav-item">
+                  <%= link_to 'Filmes não listados', unpublished_path, class: 'dropdown-item'%>
+                </li>
+                
               </ul>
             </div>
           </li>
         <% end %>
 
       </ul>
-      <form class="d-flex" role="search">
-        <input
-          class="form-control me-2"
-          type="search"
-          placeholder="Buscar"
-          aria-label="Buscar"
-        />
-        <button class="btn btn-outline-success" type="submit">Buscar</button>
-      </form>
     </div>
   </div>
 </nav>

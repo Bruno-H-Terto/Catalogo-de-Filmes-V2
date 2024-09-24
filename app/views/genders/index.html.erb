@@ -1,14 +1,18 @@
-<div class="d-flex align-items-center bg-white full-height">
-  <div class="container"> 
-    <h2 class="display-2 text-center">Listagem</h2>
-    <% @genders.each do |gender| %>
-      <div class="row justify-content-center mt-2">
-        <p class="text-center"><%= link_to "#{gender.name}", gender %></p>
+<div class="row d-flex align-items-center bg-white full-height">
+  <div class="col-6">
+    <h2 class="display-2 ms-5">Listagem de Gêneros</h2>
+  </div>
+  <div class="container-fluid col-4"> 
+    <div class="row">
+      <% @genders.each do |gender| %>
+        <div class="justify-content-center mt-2">
+          <p><%= link_to "#{gender.name}", gender %></p>
+        </div>
+      <% end %>
+      <div class="pagination">
+        <%= paginate @genders %>
       </div>
-    <% end %>
+    </div>
   </div>
 </div>
 
-<div class="pagination">
-  <%= paginate @genders %>
-</div>

@@ -61,13 +61,23 @@ a {
   color: rgb(7, 16, 151);
   cursor: pointer;
 }
+
+.img-box-cover {
+  max-width: 10rem;
+}
 /* .nav-border {
   border-bottom: 1px solid rgb(92, 92, 92);
 } */
+.img-box-index {
+  height: 20rem;
+}
 
 
 @media (max-width: 767px) {
   .img-box {
+    display: none;
+  }
+  .img-box-cover {
     display: none;
   }
 }
