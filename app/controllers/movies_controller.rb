@@ -1,4 +1,6 @@
 class MoviesController < ApplicationController
+  before_action :genders_any, except: [:index, :unpublished]
+  before_action :director_any, except: [:index, :unpublished]
   def index
     @movies = Movie.published.all.order(name: :asc).page(params[:page]).per(5)
   end

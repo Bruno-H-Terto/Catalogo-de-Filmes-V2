@@ -4,14 +4,18 @@
   </div>
   <div class="container-fluid col-4"> 
     <div class="row">
-      <% @genders.each do |gender| %>
-        <div class="justify-content-center mt-2">
-          <p><%= link_to "#{gender.name}", gender %></p>
+      <% if @genders.present?%>
+        <% @genders.each do |gender| %>
+          <div class="justify-content-center mt-2">
+            <p><%= link_to "#{gender.name}", gender %></p>
+          </div>
+        <% end %>
+        <div class="pagination">
+          <%= paginate @genders %>
         </div>
+      <% else %>
+        <p>Não existem Gêneros cadastrados</p>
       <% end %>
-      <div class="pagination">
-        <%= paginate @genders %>
-      </div>
     </div>
   </div>
 </div>

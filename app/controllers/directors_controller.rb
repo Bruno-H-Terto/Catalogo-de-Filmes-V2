@@ -1,5 +1,5 @@
 class DirectorsController < ApplicationController
-  
+  before_action :genders_any, except: [:index]
   def index
     @directors = Director.all.order(name: :asc).page(params[:page]).per(5)
 

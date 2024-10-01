@@ -3,17 +3,18 @@
     <h1>Bem-vindo à plataforma Catalogo de Filmes</h1>
     <p>Oferecemos o melhor acervo de filmes.</p>
     <div class="container row d-flex align-items-center justify-content-center ">
-      <% if @films_on_display %>
+      <% if @films_on_display.present? %>
         <p>Destaques</p>
-      <% end %>
-      <% @films_on_display.each do |movie| %>
-        <div class="card ms-1 me-1 img-box-index" style="width: 10rem;">
-          <%= image_tag movie.photo, alt: "Capa do filme: #{movie.name}", class: 'card-img-top img-fluid mt-2' %>
-          <div class="card-body d-flex flex-column ">
-            <h5 class="card-title mt-auto"><small class="text-center d-block"><%= link_to movie.name, movie, class: 'link' %></small></h5>
-            <p class="card-text">(<%= movie.year%>)</p>
+
+        <% @films_on_display.each do |movie| %>
+          <div class="card ms-1 me-1 img-box-index" style="width: 10rem;">
+            <%= image_tag movie.photo, alt: "Capa do filme: #{movie.name}", class: 'card-img-top img-fluid mt-2' %>
+            <div class="card-body d-flex flex-column ">
+              <h5 class="card-title mt-auto"><small class="text-center d-block"><%= link_to movie.name, movie, class: 'link' %></small></h5>
+              <p class="card-text">(<%= movie.year%>)</p>
+            </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
     </div>
     </div>
