@@ -1,8 +1,7 @@
 class GendersController < ApplicationController
   def index
     @genders = Gender.all.order(name: :asc).page(params[:page]).per(5)
-
-  end  
+  end
 
   def show
     begin
@@ -10,7 +9,7 @@ class GendersController < ApplicationController
       @movies = Movie.where("gender_id = ?", @gender.id).order(name: :asc).page(params[:movies_page]).per(5)
       @directors = Director.where("gender_id = ?", @gender.id).order(name: :asc).page(params[:directors_page]).per(5)
     rescue
-      redirect_to root_path, alert: 'Gênero não localizado'
+      redirect_to root_path, alert: "Gênero não localizado"
     end
   end
 
@@ -21,20 +20,20 @@ class GendersController < ApplicationController
   def create
     @gender = Gender.new(gender_params)
     @gender.name = format_name(@gender.name)
-  
+
     if @gender.save
-      redirect_to genders_path, notice: 'Gênero salvo com sucesso'
+      redirect_to genders_path, notice: "Gênero salvo com sucesso"
     else
-      flash.now[:alert] = 'Não foi possível concluir esta operação.'
+      flash.now[:alert] = "Não foi possível concluir esta operação."
       render :new
     end
   end
-  
+
   def edit
     begin
       @gender = Gender.find(params[:id])
     rescue
-      redirect_to root_path, alert: 'Gênero não localizado'
+      redirect_to root_path, alert: "Gênero não localizado"
     end
   end
 
@@ -45,16 +44,16 @@ class GendersController < ApplicationController
       params[:name] = format_name(params[:name])
 
       if @gender.update(params)
-        redirect_to genders_path, notice: 'Gênero atualizado com sucesso'
+        redirect_to genders_path, notice: "Gênero atualizado com sucesso"
       else
-        flash.now[:alert] = 'Não foi possível concluir esta operação.'
+        flash.now[:alert] = "Não foi possível concluir esta operação."
         render :edit
       end
     rescue
-      redirect_to root_path, alert: 'Gênero não localizado'
+      redirect_to root_path, alert: "Gênero não localizado"
     end
   end
-  
+
 
   private
 

@@ -1,9 +1,7 @@
 class DirectorsController < ApplicationController
-  before_action :genders_any, except: [:index]
+  before_action :genders_any, except: [ :index ]
   def index
     @directors = Director.all.order(name: :asc).page(params[:page]).per(5)
-
-    
   end
 
   def show
@@ -11,7 +9,7 @@ class DirectorsController < ApplicationController
       @director = Director.find(params[:id])
       @movies = Movie.where("director_id = ?", @director.id).order(name: :asc).page(params[:movies_page]).per(5)
     rescue
-      redirect_to root_path, alert: 'Não foi possível localizar o diretor procurado'
+      redirect_to root_path, alert: "Não foi possível localizar o diretor procurado"
     end
   end
   def new
@@ -25,7 +23,7 @@ class DirectorsController < ApplicationController
     if @director.save
       redirect_to @director, notice: "Diretor incluido com sucesso"
     else
-      flash.now[:alert] = 'Não foi possível concluir está operação'
+      flash.now[:alert] = "Não foi possível concluir está operação"
       render :new
     end
   end
@@ -34,7 +32,7 @@ class DirectorsController < ApplicationController
     begin
       @director = Director.find(params[:id])
     rescue
-      redirect_to root_path, alert: 'Não foi possível localizar o diretor procurado'
+      redirect_to root_path, alert: "Não foi possível localizar o diretor procurado"
     end
   end
 
@@ -47,11 +45,11 @@ class DirectorsController < ApplicationController
       if @director.update(params)
         redirect_to @director, notice: "Diretor atualizado com sucesso"
       else
-        flash.now[:alert] = 'Não foi possível concluir está operação'
+        flash.now[:alert] = "Não foi possível concluir está operação"
         render :new
       end
     rescue
-      redirect_to root_path, alert: 'Não foi possível localizar o diretor procurado'
+      redirect_to root_path, alert: "Não foi possível localizar o diretor procurado"
     end
   end
 

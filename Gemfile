@@ -26,8 +26,8 @@ gem "jbuilder"
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
-gem 'bootstrap', '~> 5.0.2'
-gem 'sassc-rails'
+gem "bootstrap", "~> 5.0.2"
+gem "sassc-rails"
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 
@@ -39,8 +39,8 @@ gem "image_processing", "~> 1.2"
 
 gem "foreman"
 
-gem 'kaminari'
-gem 'kaminari-bootstrap'
+gem "kaminari"
+gem "kaminari-bootstrap"
 
 
 group :development, :test do
@@ -60,9 +60,9 @@ group :development do
 end
 
 group :test do
-  gem 'rspec-rails'
+  gem "rspec-rails"
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem 'database_cleaner-active_record'
+  gem "database_cleaner-active_record"
   gem "capybara"
   gem "selenium-webdriver"
 end
