@@ -66,19 +66,41 @@ a {
 .img-box-cover {
   max-width: 10rem;
 }
-/* .nav-border {
-  border-bottom: 1px solid rgb(92, 92, 92);
-} */
+
 .img-box-index {
   height: 20rem;
 }
 
+.notification {
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  top: 5rem;
+}
+
+.notification img {
+  max-width: 2%;
+  cursor: pointer;
+}
+
+.visible {
+  display: none;
+}
 
 .nav-top-fixed{
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
+}
+
+.home-section {
+  transition: color 0.3s ease;
+  color: #adb5bd;
+}
+
+.home-section:hover{
+  color: #ffffff;
 }
 
 @media (max-width: 767px) {
