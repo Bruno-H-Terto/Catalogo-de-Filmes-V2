@@ -52,26 +52,29 @@ RUN yarn install --frozen-lockfile
 # Copy application code
 COPY . .
 
+# Define env para build seguro
+ENV SECRET_KEY_BASE=dummy_for_assets
+ENV RAILS_ENV=production
+
 # Precompile bootsnap code for faster boot times
 RUN bundle exec bootsnap precompile app/ lib/
 
-# Precompiling assets for production without requiring secret RAILS_MASTER_KEY
-RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
+# Precompile assets (seguro mesmo sem RAILS_MASTER_KEY real)
+RUN bundle exec rake assets:precompile
 
-
+# Limpa node_modules que não são necessários no final
 RUN rm -rf node_modules
-
 
 # Final stage for app image
 FROM base
 
-# Instalar nodejs e yarn na imagem final para ExecJS rodar
+# Instalar nodejs e yarn na imagem final para ExecJS rodar (e assets dinâmicos)
 RUN apt-get update -qq && apt-get install -y curl && \
     curl -sL https://deb.nodesource.com/setup_20.x | bash - && \
     apt-get install -y nodejs && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Copy built artifacts: gems, application
+# Copia os artefatos construídos
 COPY --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"
 COPY --from=build /rails /rails
 
@@ -81,12 +84,11 @@ RUN groupadd --system --gid 1000 rails && \
     chown -R rails:rails db log storage tmp
 USER 1000:1000
 
-# Entrypoint prepares the database.
+# Entrypoint prepara o banco de dados
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
-# Start the server by default, this can be overwritten at runtime
+# Expõe a porta padrão do Rails
 EXPOSE 3000
 
-RUN RAILS_ENV=production bundle exec rake assets:precompile
-
+# Starta o servidor por padrão (pode ser sobrescrito)
 CMD ["./bin/rails", "server"]
